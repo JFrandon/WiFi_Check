@@ -65,10 +65,8 @@ echo $$ > $lockfile
 echo "Performing Network check for $wlan"
 /bin/ping -c 2 -I $wlan $pingip > /dev/null 2> /dev/null
 if [ $? -ge 1 ] ; then
-    echo "Network connection down! Attempting reconnection."
-    /sbin/ifdown $wlan
-    /bin/sleep 5
-    /sbin/ifup --force $wlan
+    echo "Network connection down! Attempting reboot."
+    /sbin/reboot
 else
     echo "Network is Okay"
 fi
